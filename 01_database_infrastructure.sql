@@ -1,43 +1,72 @@
-import streamlit as st
-from snowflake.snowpark.context import get_active_session
-import pandas as pd
+-- PROJECT: ENTERPRISE LIFE SCIENCES DATA GOVERNANCE & ANONYMIZATION SANDBOX
+-- TARGET COHORTS: DERMATOLOGY & ONCOLOGY SKIN CANCER CLINICAL TRAILS (N=1000)
+-- AUTHORIZATIONN: USE ROLE ACCOUNTADMIN
 
-# 1. Initialize active internal database session connection
-session = get_active_session()
+USE ROLE ACCOUNTADMIN;
 
-# 2. Design interface header elements
-st.title("Derma-Tech Phase II Clinical Trial Sandbox")
-st.markdown("### Secure HIPAA-Compliant Real-Time Analytics Portal (N = 1,000 Patients)")
-st.write("This application pulls directly from an anonymized database view layer containing zero raw PHI values.")
+-- 1. CLOUD STORAGE CONTAINERS
+CREATE OR REPLACE DATABASE DERMA_CLINICAL_SANDBOX;
+CREATE OR REPLACE SCHEMA DERMA_CLINICAL_SANDBOX.TRIAL_DATA;
 
-# 3. Stream the enterprise data array using Snowpark Python
-raw_query = "SELECT * FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_secure_analytics_view"
-snow_df = session.sql(raw_query)
-pd_df = snow_df.to_pandas() # Flatten to standard pandas data frame structure 
+-- 2. RAW PATIENT INTAKE SCHEMA (CONTAINS SENSITIVE PROTECTED HEALTH INFORMATION / PHI)
+CREATE OR REPLACE TABLE DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw (
+    patient_id INT,
+    first_name STRING,
+    last_name STRING,
+    date_of_birth DATE,
+    medical_diagnosis STRING,
+    systolic_blood_pressure INT,
+    efficacy_score FLOAT
+);
 
-# 4. Interactive Sidebar Parametr Filter Controls
-st.sidebar.header("Cohort Selection Filters")
-selected_diagnosis = st.sidebar.selectbox(
-    "Select Target Dermatology Cohort:",
-    options=pd_df["MEDICAL_DIAGNOSIS"].unique()
-)
+-- 3. PROPS-DRIVEN ENTERPRISE SEED GENERATOR (1,000 ROWS OUT OF THIN AIR)
+TRUNCATE TABLE DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw;
 
-# Apply dynamic matrix selection filter based on user sidebar input
-filtered_df = pd_df[pd_df["MEDICAL_DIAGNOSIS"] == selected_diagnosis]
+INSERT INTO DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw
+SELECT
+    1000 + ROW_NUMBER() OVER (ORDER BY SEQ4()) AS patient_id,
+    CASE MOD(SEQ4(), 5)
+        WHEN 0 THEN 'Sarah' WHEN 1 THEN 'Josh' WHEN 2 THEN 'Amanda' WHEN 3 THEN 'Kevin' ELSE 'Patricia'
+    END AS first_name,
+    CASE MOD (SEQ4(), 6)
+        WHEN 0 THEN 'Jenkins' WHEN 1 THEN 'Chang' WHEN 2 THEN 'Ross' WHEN 3 THEN 'Gomez' WHEN 4 THEN 'Davis' ELSE 'Wallace'
+    END AS last_name,
+    -- Simulates a clean demographic range of realistic adult patient birthdays
+    DATEADD(day, -UNIFORM(7000, 22000, RANDOM()), CURRENT_DATE()) AS date_of_birth,
 
-# 5. Multi-Column Analytical Layout UI Build
-col1, col2 = st.columns(2)
+    -- Split 1,000 patients across 4 distinct inflammatory and oncological dermatology tracks
+    CASE MOD(SEQ4(), 4)
+        WHEN 0 THEN 'Severe Psoriasis (Biologic)'
+        WHEN 1 THEN 'Atopic Dermatitis (JAK Inhibitor)'
+        WHEN 2 THEN 'Onychomycosis (Topical Antifungals)'
+        ELSE 'Basal Cell Carcinoma (Topical Immunotherapy)' -- Skin cancer cohort
+    END AS medical_diagnosis,
 
-with col1:
-    st.subheader("Anonymized Patient Cohort Logs")
-    st.dataframe(filtered_df, use_container_width=True)
+    -- Blood pressure metrics mapping vital signs fluctuations
+    UNIFORM(110, 150, RANDOM()) AS systolic_blood_pressure,
 
-with col2:
-    st.subheader("Statistical Performance Summary")
+    -- Enforce real-world clinical benchmarks: Onychomycosis mirrors low Jublia topical thresholds
+    CASE MOD(SEQ4(), 4)
+        WHEN 2 THEN ROUND(UNIFORM(0.15, 0.18, RANDOM()), 2) -- Strict 15-18% Jublia curve
+        WHEN 3 THEN ROUND(UNIFORM(0.70, 0.82, RANDOM()), 2) -- Standard Aldara topical clearance rate
+        ELSE ROUND(UNIFORM(0.45, 0.94, RANDOM()), 2)        -- Modern systemic/biologic clearances
+    END AS efficacy_score
+FROM TABLE(GENERATOR(ROWCOUNT => 1000));
 
-    # Calculate real-time mean averages for the clinical metrics card
-    avg_efficacy = filtered_df["EFFICACY_SCORE"].mean()
-    st.metric(label="Cohort Mean Efficacy Score", value=f"{avg_efficacy:.2%}")
+-- 4. THE HIPAA PRIVACY LAYER: CRYPTOGRAPHIC SHA-256 SCHEMA MASKING VIEW
+CREATE OR REPLACE VIEW DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_secure_analytics_view AS
+SELECT
+    -- Irreversible cryptographic token hides names while maintaining unique identification data arrays
+    SHA2(CONCAT(patient_id, first_name, last_name)) AS secure_token_id,
+    YEAR(date_of_birth) AS birth_year,
+    medical_diagnosis,
+    systolic_blood_pressure,
+    efficacy_score
+FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw;
 
-    # Render an interactive horizontal tracking visualization graph
-    st.bar_chart(filtered_df.set_index("SECURE_TOKEN_ID")["EFFICACY_SCORE"])
+-- 5. AUDIT ENGINE VERIFICATION CHECKS
+SELECT COUNT(*) AS total_generated_records 
+FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw;
+
+SELECT * FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_secure_analytics_view
+LIMIT 5;
