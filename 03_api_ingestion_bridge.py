@@ -40,7 +40,7 @@ def live_fda_safety_bridge(dermatology_keyword):
     # --- Step 2: Bridging with 1,000-Patient Sandbox ---
     print("\n Step 2: Injecting secure 1,000-patient sandbox data arrays...")
 
-    # Simulating your clean, anonymized Snowflake data table structure
+    # Simulating clean, anonymized Snowflake data table structure
     mock_snowflake_view = [
         {
             "SECURE_TOKEN_ID": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -66,7 +66,7 @@ def live_fda_safety_bridge(dermatology_keyword):
     print("SUCCESS: Live API parameters successfully bridged to Sandbox Schema.\n")
     return df
 
-# --- RUN THE BRIDGE ENGINE
+# --- Run the bridge engine 
 # Execute the live pipeline check
 final_compliance_table = live_fda_safety_bridge(
     dermatology_keyword="contamination"
