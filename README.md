@@ -12,7 +12,7 @@ The sandbox architecture addresses two critical success criteria within the mode
 ## System Architecture & Framework Components
 
 ### 1. Data Generation & Parameter Seeding (`01_database_infrastructure.sql`)
-Utilizing Snowflake's administrative engine, a data matrix was auto-generated to seed 1,000 patient rows. The dataset splits across 4 distinct clinical tracks, embedding real-world therapeutic benchmarks:
+Utilizing Snowflake's computational engine, a highly structured data matrix was generated to seed 1,000 randomized patient records. The dataset is explicitly designed to simulate a multi-arm pharmaceutical clinical trial testing four distinct therapeutic tracks based on strict diagnostic criteria: 
   1. Severe Psoriasis (Biologic Track)
   2. Atopic Dermatitis (JAK Inhibitor Track)
   3. Onychomycosis (Topical Antifungal Track): Designed to mimic a strict 15-18% clearance curve (*Simulating Jublia efficacy model*)
