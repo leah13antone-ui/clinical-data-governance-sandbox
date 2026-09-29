@@ -19,7 +19,7 @@ Utilizing Snowflake's administrative engine, a data matrix was auto-generated to
   ** Basal Cell Carcinoma (Topical Immunotherapy Track): Models an oncological tumor-clearance parameter track.
 
 ### 2. The HIPAA Privacy Layer (SHA-256 Hashing View)
-To fulfill strict HIPAA and PHI de-identification standards, a secure schema view applies a column-level **SHA2 cryptographic hash** that combines patient IDs and intake names into irreversible, unique 64-character tokens. Exact dates of birth are generalized to broad birth years, completely isolating sensitive patient identities before downstream exposure.
+To fulfill strict HIPAA and PHI de-identification standards, a secure schema view applies a column-level **SHA-256 cryptographic hash** that combines patient IDs and intake names into irreversible, unique 64-character tokens. Exact dates of birth are generalized to broad birth years, completely isolating sensitive patient identities before downstream exposure.
 
 ### 3. Interactive Analytical Portal (`02_dashboard_application.py`)
 Developed an interactive interface utilizing **Streamlit and Snowpack Python** to pull from the anonymized view. The application provides dynamic sidebar selection filtering, rendering real-time cohort distribution charts and live mean efficacy statistical calculations simultaneously.
