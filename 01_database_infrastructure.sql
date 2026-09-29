@@ -3,11 +3,11 @@
 
 USE ROLE ACCOUNTADMIN;
 
--- 1. CLOUD STORAGE CONTAINERS
+-- 1. Cloud storage containers 
 CREATE OR REPLACE DATABASE DERMA_CLINICAL_SANDBOX;
 CREATE OR REPLACE SCHEMA DERMA_CLINICAL_SANDBOX.TRIAL_DATA;
 
--- 2. RAW PATIENT INTAKE SCHEMA (CONTAINS SENSITIVE PROTECTED HEALTH INFORMATION / PHI)
+-- 2. Raw patient intake schema (contains sensitive protected health information (PHI))
 CREATE OR REPLACE TABLE DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw (
     patient_id INT,
     first_name STRING,
@@ -18,7 +18,7 @@ CREATE OR REPLACE TABLE DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw (
     efficacy_score FLOAT
 );
 
--- 3. PROPS-DRIVEN ENTERPRISE SEED GENERATOR (1,000 ROWS)
+-- 3. Props-driven enterprise seed generator (1,000 rows) 
 TRUNCATE TABLE DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw;
 
 INSERT INTO DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw
@@ -52,7 +52,7 @@ SELECT
     END AS efficacy_score
 FROM TABLE(GENERATOR(ROWCOUNT => 1000));
 
--- 4. THE HIPAA PRIVACY LAYER: CRYPTOGRAPHIC SHA-256 SCHEMA MASKING VIEW
+-- 4. The HIPAA privacy layer: cryptographic SHA-256 schema masking view 
 CREATE OR REPLACE VIEW DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_secure_analytics_view AS
 SELECT
     -- Irreversible cryptographic token hides names while maintaining unique identification data arrays
@@ -63,7 +63,7 @@ SELECT
     efficacy_score
 FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw;
 
--- 5. AUDIT ENGINE VERIFICATION CHECKS
+-- 5. Audit engine verification checks 
 SELECT COUNT(*) AS total_generated_records 
 FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_intake_raw;
 
