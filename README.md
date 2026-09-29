@@ -1,8 +1,8 @@
-# Phase II Dermatology & Skin Cancer Clinical Trial Sandbox
+# Phase II Dermatology Clinical Trial Sandbox
 ### Enterprise Data Governance, HIPAA De-Identification & Real-Time Efficacy Analytics (N=1,000)
 
 ## Executive Overview
-This repository contains a production-scale cloud data architecture simulating the ingestion, cryptographic de-identification, and interactive visualization of an enterprise-level pharmaceutical clinical trial. Modeling a cohort of 1,000 randomized patient profiles across four high-consequence dermatology tracks, this sandbox demonstrates a fully functional pipeline that bridges rigid healthcare compliance rules with real-time biostatistical decision making.
+This repository contains a production-scale cloud data architecture modeling the ingestion, anonymization, and interactive visualization of a pharmaceutical clinical trial. The sandbox uses data generated from 1,000 randomized patient profiles divided into 4 different clinical dermatology tracks. Upon visualization, the data clearly demonstrates a functional pipeline that bridges healthcare safety compliance with real-time statistical modeling to influence decision-making.
 
 The project addresses two critical challenges in modern Life Sciences tech:
 1. PHI Protection: Ensuring complete data privacy without stripping the utility required for tracking clinical efficacy metrics.
