@@ -8,7 +8,7 @@ def live_fda_safety_bridge(dermatology_keyword):
     # Real, live public government API endpoint tracking drug enforcement safety issues
     fda_url = f"https://api.fda.gov/drug/recall.json?search=reason_for_recall:{dermatology_keyword}&limit=1"
 
-    safety_alert = "" # Initialize safety_alrt to prevent UnboundLocalError
+    safety_alert = "" # Initialize safety_alert to prevent UnboundLocalError
 
     try:
         fda_response = requests.get(fda_url, timeout=10)
