@@ -4,19 +4,19 @@
 ## Executive Overview
 This repository contains a production-scale cloud data architecture modeling the ingestion, anonymization, and interactive visualization of a pharmaceutical clinical trial. The sandbox uses data generated from 1,000 randomized patient profiles divided into 4 different clinical dermatology tracks. Upon visualization, the data clearly demonstrates a functional pipeline that bridges healthcare safety compliance with real-time statistical modeling to influence decision-making.
 
-The project addresses two critical challenges in modern Life Sciences tech:
-1. PHI Protection: Ensuring complete data privacy without stripping the utility required for tracking clinical efficacy metrics.
-2. Dynamic Live Visualization: Delivering an active web canvas for executive stakeholders to isolate cohort metrics instantly.
+The sandbox architecture addresses two critical success criteria within the modern Life Sciences tech sector:
+1. PHI Protection & Compliance: Sensitive patient information is programmatically anonymized via cryptographic hashing. This ensures compliance with stringent privacy regulations without degrading the quality of the data required for tracking clinical efficacy metrics. 
+2. Dynamic UI Visualization: Anonymized records are ingested into a secure cloud data layer and surfaced through an interactive Streamlit web interface, enabling cross-functional stakeholders to isolate, filter, and analyze real-time cohort metrics.
 
 
 ## System Architecture & Framework Components
 
 ### 1. Data Generation & Parameter Seeding (`01_database_infrastructure.sql`)
 Utilizing Snowflake's administrative engine, a data matrix was auto-generated to seed 1,000 patient rows. The dataset splits across 4 distinct clinical tracks, embedding real-world therapeutic benchmarks:
-  ** Severe Psoriasis (Biologic Track)
-  ** Atopic Dermatitis (JAK Inhibitor Track)
-  ** Onychomycosis (Topical Antifungal Track): Hard-coded to mimic a strict 15-18% clearance curve (*Jublia efficacy model*)
-  ** Basal Cell Carcinoma (Topical Immunotherapy Track): Models an oncological tumor-clearance parameter track.
+  1. Severe Psoriasis (Biologic Track)
+  2. Atopic Dermatitis (JAK Inhibitor Track)
+  3. Onychomycosis (Topical Antifungal Track): Designed to mimic a strict 15-18% clearance curve (*Simulating Jublia efficacy model*)
+  4. Basal Cell Carcinoma (Topical Immunotherapy Track): Models an oncological tumor-clearance parameter track.
 
 ### 2. The HIPAA Privacy Layer (SHA-256 Hashing View)
 To fulfill strict HIPAA and PHI de-identification standards, a secure schema view applies a column-level **SHA-256 cryptographic hash** that combines patient IDs and intake names into irreversible, unique 64-character tokens. Exact dates of birth are generalized to broad birth years, completely isolating sensitive patient identities before downstream exposure.
