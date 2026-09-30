@@ -24,6 +24,18 @@ To preserve baseline data integrity and meet strict patient privacy standards (H
 ### 3. Interactive Analytical Portal (`02_dashboard_application.py`)
 Developed an interactive interface utilizing **Streamlit and Snowpack Python** to visualize the anonymized database view. The application delivers dynamic sidebar filtering capabilities, rendering real-time cohort distribution charts and aggregation analytics to surface mean efficacy scores organized by specific therapeutic tracking groups.
 
+<p align="center">
+  <img src="efficacy_dashboard.png" width="750" alt="Streamlit Main Interface Landing Page">
+</p>
+
+<p align="center">
+  <img src="dashboard_table.png" width="750" alt="Interactive Sidebar Filters and Patient Cohort Data Table">
+</p>
+
+<p align="center">
+  <img src="mean_efficacy_score_chart.png" width="750" alt="Mean Efficacy Score Analytical Chart Organized by Therapeutic Track">
+</p>
+
 ### 4. Live Regulatory Compliance Bridge (`03_api_ingestion_bridge.py`)
 Features a Python pipeline that queries live government servers via the **OpenFDA Drug Enforcement API**. The script evaluates real-time pharmaceutical recall keywords and automatically maps dataframe parameters back to the local patient cohort to proactively flag compliance risks.
 
