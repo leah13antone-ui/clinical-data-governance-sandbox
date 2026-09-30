@@ -25,7 +25,7 @@ To preserve baseline data integrity and meet strict patient privacy standards (H
 Developed an interactive interface utilizing **Streamlit and Snowpack Python** to visualize the anonymized database view. The application delivers dynamic sidebar filtering capabilities, rendering real-time cohort distribution charts and aggregation analytics to surface mean efficacy scores organized by specific therapeutic tracking groups.
 
 ### 4. Live Regulatory Compliance Bridge (`03_api_ingestion_bridge.py`)
-Features a Python pipeline that queries live government servers via the **OpenFDA Drug Enforcement API**. The script evaluates real-time pharmaceutical recall keywords and automatically maps data frame parameters back to the local patient cohort to proactively flag compliance risks.
+Features a Python pipeline that queries live government servers via the **OpenFDA Drug Enforcement API**. The script evaluates real-time pharmaceutical recall keywords and automatically maps dataframe parameters back to the local patient cohort to proactively flag compliance risks.
 
 ---
 ## Impact Narrative 
