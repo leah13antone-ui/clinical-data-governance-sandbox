@@ -22,7 +22,7 @@ Utilizing Snowflake's computational engine, a highly structured data matrix was 
 To preserve baseline data integrity and meet strict patient privacy standards (HIPAA and PHI), a secure schema view was architected within Snowflake. This layer programmatically encrypts direct patient identifiers using **SHA-256 cryptographic hashing**, merging sensitive profiles metrics into irreversible, unique 64-character tokens. Concurrently, exact dates of birth were truncated into broad birth years to align with Safe Harbor methodologies, completely de-identifying the records before the data was streamed into the interactive UI for analytics and visualization.
 
 ### 3. Interactive Analytical Portal (`02_dashboard_application.py`)
-Developed an interactive interface utilizing **Streamlit and Snowpack Python** to pull from the anonymized view. The application provides dynamic sidebar selection filtering, rendering real-time cohort distribution charts and live mean efficacy statistical calculations simultaneously.
+Developed an interactive interface utilizing **Streamlit and Snowpack Python** to visualize the anonymized database view. The application delivers dynamic sidebar filtering capabilities, rendering real-time cohort distribution charts and aggregation analytics to surface mean efficacy scores organized by specific therapeutic tracking groups.
 
 ### 4. Live Regulatory Compliance Bridge (`03_api_ingestion_bridge.py`)
 Features a Python pipeline that queries live government servers via the **OpenFDA Drug Enforcement API**. The script evaluates real-time pharmaceutical recall keywords and automatically maps data frame parameters back to the local patient cohort to proactively flag compliance risks.
