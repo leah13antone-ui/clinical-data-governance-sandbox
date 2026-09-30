@@ -24,6 +24,7 @@ To preserve baseline data integrity and meet strict patient privacy standards (H
 ### 3. Interactive Analytical Portal (`02_dashboard_application.py`)
 Developed an interactive interface utilizing **Streamlit and Snowpack Python** to visualize the anonymized database view. The application delivers dynamic sidebar filtering capabilities, rendering real-time cohort distribution charts and aggregation analytics to surface mean efficacy scores organized by specific therapeutic tracking groups.
 
+
 <p align="center">
   <img src="efficacy_dashboard.png" width="750" alt="Streamlit Main Interface Landing Page">
 </p>
