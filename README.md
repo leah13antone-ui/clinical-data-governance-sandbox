@@ -29,4 +29,4 @@ Features a Python pipeline that queries live government servers via the **OpenFD
 
 ---
 ## Impact Narrative 
-In a live enterprise presentation, this sandbox serves as a direct proof of concept for major pharmaceutical accounts. It demonstrates that clinical research teams can monitor real-time statistical trends within an automated topical block, while completely mitigating global GxP data integrity risks and preventing FDA audit exposures.
+In a live enterprise presentation, this sandbox serves as a direct proof of concept for major pharmaceutical accounts. It demonstrates that clinical research teams can monitor real-time statistical trends within a validated cloud environment, while completely mitigating global GxP data integrity risks and preventing FDA audit exposures.
