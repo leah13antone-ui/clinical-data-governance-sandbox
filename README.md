@@ -28,5 +28,5 @@ Developed an interactive interface utilizing **Streamlit and Snowpack Python** t
 Features a Python pipeline that queries live government servers via the **OpenFDA Drug Enforcement API**. The script evaluates real-time pharmaceutical recall keywords and automatically maps data frame parameters back to the local patient cohort to proactively flag compliance risks.
 
 ---
-## Impact Narrative (The SE Business Pitch)
-In a live enterprise presentation, this sandbox serves as a direct proof of concept for major pharmaceutical accounts. It demonstrates that clinical research teams can monitor real-time statistical trends, such as capturing a precise 16.5% average response curve within an automated topical block, while completely mitigating global GxP data integrity risks and preventing multi-million dollar FDA audit exposures.
+## Impact Narrative 
+In a live enterprise presentation, this sandbox serves as a direct proof of concept for major pharmaceutical accounts. It demonstrates that clinical research teams can monitor real-time statistical trends within an automated topical block, while completely mitigating global GxP data integrity risks and preventing FDA audit exposures.
