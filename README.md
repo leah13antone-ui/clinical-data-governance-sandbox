@@ -38,7 +38,7 @@ Developed an interactive interface utilizing **Streamlit and Snowpack Python** t
 </p>
 
 ### 4. Live Regulatory Compliance Bridge (`03_api_ingestion_bridge.py`)
-Features a Python pipeline that queries live government servers via the **OpenFDA Drug Enforcement API**. The script evaluates real-time pharmaceutical recall keywords and automatically maps dataframe parameters back to the local patient cohort to proactively flag compliance risks.
+Features a Python pipeline that simulates real-world data ingestion by modeling REST API response payloads from the OpenFDA Drug Enforcement API. The script evaluates mapped pharmaceutical recall keywords and automatically links dataframe parameters back to the local patient cohort to demonstrate how clinical teams can proactively flag compliance risks.
 
 ---
 ## Impact Narrative 
