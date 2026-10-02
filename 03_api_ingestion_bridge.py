@@ -51,7 +51,7 @@ def live_fda_safety_bridge(dermatology_keyword):
             "SECURE_TOKEN_ID": "8c7dd992ad47494fc02c388e12c00eac02427ae41e4649b934ca495991b7852c",
             "BIRTH_YEAR": 1972,
             "MEDICAL_DIAGNOSIS": "Onychomycosis (Topical Antifungals)",
-            "EFFICACY_SCORE": 0.16, #Enforces your strict Jublia clinical limit
+            "EFFICACY_SCORE": 0.16, #Enforces strict Jublia clinical limit
         },
     ]
     # Convert your database view into a standard python matrix layout
