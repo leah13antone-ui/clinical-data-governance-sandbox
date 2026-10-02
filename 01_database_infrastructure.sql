@@ -1,5 +1,5 @@
--- PROJECT: ENTERPRISE LIFE SCIENCES DATA GOVERNANCE & ANONYMIZATION SANDBOX
--- TARGET COHORTS: DERMATOLOGY & ONCOLOGY SKIN CANCER CLINICAL TRAILS (N=1000)
+-- Project: Enterprise Life Sciences Data Governance & Anonymization Sandbox 
+-- Target Cohorts: Dermatology & Oncology skin cancer clinical trials (N=1000) 
 
 USE ROLE ACCOUNTADMIN;
 
@@ -30,6 +30,7 @@ SELECT
     CASE MOD (SEQ4(), 6)
         WHEN 0 THEN 'Jenkins' WHEN 1 THEN 'Chang' WHEN 2 THEN 'Ross' WHEN 3 THEN 'Gomez' WHEN 4 THEN 'Davis' ELSE 'Wallace'
     END AS last_name,
+    
     -- Simulates a clean demographic range of realistic adult patient birthdays
     DATEADD(day, -UNIFORM(7000, 22000, RANDOM()), CURRENT_DATE()) AS date_of_birth,
 
@@ -46,8 +47,8 @@ SELECT
 
     -- Enforce real-world clinical benchmarks: Onychomycosis mirrors low Jublia topical thresholds
     CASE MOD(SEQ4(), 4)
-        WHEN 2 THEN ROUND(UNIFORM(0.15, 0.18, RANDOM()), 2) -- Strict 15-18% Jublia curve
-        WHEN 3 THEN ROUND(UNIFORM(0.70, 0.82, RANDOM()), 2) -- Standard Aldara topical clearance rate
+        WHEN 2 THEN ROUND(UNIFORM(0.15, 0.18, RANDOM()), 2) -- Strict 15-18% Jublia curve (Onychomycosis cohort)
+        WHEN 3 THEN ROUND(UNIFORM(0.70, 0.82, RANDOM()), 2) -- Standard Aldara topical clearance rate (Skin cancer cohort)
         ELSE ROUND(UNIFORM(0.45, 0.94, RANDOM()), 2)        -- Modern systemic/biologic clearances
     END AS efficacy_score
 FROM TABLE(GENERATOR(ROWCOUNT => 1000));
