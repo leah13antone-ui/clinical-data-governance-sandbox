@@ -15,7 +15,7 @@ raw_query = "SELECT * FROM DERMA_CLINICAL_SANDBOX.TRIAL_DATA.patient_secure_anal
 snow_df = session.sql(raw_query)
 pd_df = snow_df.to_pandas() # Flatten to standard pandas data frame structure 
 
-# 4. Interactive Sidebar Parametr Filter Controls
+# 4. Interactive Sidebar Parameter Filter Controls
 st.sidebar.header("Cohort Selection Filters")
 selected_diagnosis = st.sidebar.selectbox(
     "Select Target Dermatology Cohort:",
