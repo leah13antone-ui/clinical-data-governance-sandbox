@@ -3,9 +3,8 @@ import requests
 
 
 def live_fda_safety_bridge(dermatology_keyword):
-    print(f"📡 Step 1: Querying live OpenFDA servers for: '{dermatology_keyword}'...")
-
-    # Real, live public government API endpoint tracking drug enforcement safety issues
+    print(f"Step 1: Querying live OpenFDA servers for: '{dermatology_keyword}'...")
+    
     fda_url = f"https://api.fda.gov/drug/recall.json?search=reason_for_recall:{dermatology_keyword}&limit=1"
 
     safety_alert = "" # Initialize safety_alert to prevent UnboundLocalError
@@ -35,7 +34,7 @@ def live_fda_safety_bridge(dermatology_keyword):
 
     except Exception as e:
         print(f"Network gateway routing bypassed. Error: {e}")
-        safety_alert = "" # Clear safety_alert if a exception occurs
+        safety_alert = "" # Clear safety_alert if an exception occurs
 
     # --- Step 2: Bridging with 1,000-Patient Sandbox ---
     print("\n Step 2: Injecting secure 1,000-patient sandbox data arrays...")
