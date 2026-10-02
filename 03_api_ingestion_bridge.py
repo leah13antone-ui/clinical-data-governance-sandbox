@@ -36,7 +36,7 @@ def live_fda_safety_bridge(dermatology_keyword):
         print(f"Network gateway routing bypassed. Error: {e}")
         safety_alert = "" # Clear safety_alert if an exception occurs
 
-    # --- Step 2: Bridging with 1,000-Patient Sandbox ---
+    # --- Step 2: Bridge with 1,000-Patient Sandbox ---
     print("\n Step 2: Injecting secure 1,000-patient sandbox data arrays...")
 
     # Simulating clean, anonymized Snowflake data table structure
@@ -51,13 +51,13 @@ def live_fda_safety_bridge(dermatology_keyword):
             "SECURE_TOKEN_ID": "8c7dd992ad47494fc02c388e12c00eac02427ae41e4649b934ca495991b7852c",
             "BIRTH_YEAR": 1972,
             "MEDICAL_DIAGNOSIS": "Onychomycosis (Topical Antifungals)",
-            "EFFICACY_SCORE": 0.16, #Enforces strict Jublia clinical limit
+            "EFFICACY_SCORE": 0.16, # Enforces strict Jublia clinical limit
         },
     ]
-    # Convert your database view into a standard python matrix layout
+    # Convert database view into a standard python matrix layout
     df = pd.DataFrame(mock_snowflake_view)
 
-    # Dynamically append the live safety text straight into your cohort rows
+    # Dynamically append the live safety text straight into cohort rows
     df["LIVE_FDA_COMPLIANCE_STATUS"] = (
        "FLAGGED: Review Safety Audit" if safety_alert else "CLEARED"
     )
