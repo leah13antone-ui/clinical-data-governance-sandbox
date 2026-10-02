@@ -15,6 +15,7 @@ def live_fda_safety_bridge(dermatology_keyword):
         # If the live API succeeds, extract the official safety alert text
         if fda_response.status_code == 200:
             fda_data = fda_response.json()
+            
             # Check if 'results' key exists and is not empty
             if 'results' in fda_data and fda_data['results']:
                 safety_alert = fda_data["results"][0]["reason_for_recall"]
