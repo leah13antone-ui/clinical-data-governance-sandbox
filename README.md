@@ -15,7 +15,7 @@ The sandbox architecture addresses two critical success criteria within the mode
 Utilizing Snowflake's computational engine, a highly structured data matrix was generated to seed 1,000 randomized patient records. The dataset is explicitly designed to simulate a multi-arm pharmaceutical clinical trial testing four distinct therapeutic tracks based on strict diagnostic criteria: 
   1. Severe Psoriasis (Biologic Track)
   2. Atopic Dermatitis (JAK Inhibitor Track)
-  3. Onychomycosis (Topical Antifungal Track): Designed to mimic a strict 15%-18% clearance curve based on Jublia's efficacy model.
+  3. Onychomycosis (Topical Antifungal Track): Hard-coded to accurately simulate real-world clinical endpoint parameters, tracking a strict 15%-18% mycological clearance curve based on the Julia efficacy model.
   4. Basal Cell Carcinoma (Topical Immunotherapy Track): Models an oncological tumor-clearance parameter track.
 
 ### 2. The HIPAA Privacy Layer (SHA-256 Hashing View)
