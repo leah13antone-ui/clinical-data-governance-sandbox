@@ -1,4 +1,3 @@
--- Project: Enterprise Life Sciences Data Governance & Anonymization Sandbox 
 -- Target Cohorts: Dermatology & Oncology skin cancer clinical trials (N=1000) 
 
 USE ROLE ACCOUNTADMIN;
